@@ -1,13 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head profile="samplehtmlprofile.html"><title>XMDP: Introduction and Format Description</title>
+<head profile="../samplehtmlprofile.html"><title>XMDP: Introduction and Format Description</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <meta name="author" lang="tr" content="Tantek &Ccedil;elik" />
 <meta name="copyright" content="&copy; copyright 2003 by Tantek &Ccedil;elik. All rights reserved." />
 <meta name="date" content="2003-05-27" />
 <style type="text/css">
 /*<![CDATA[*/
-@import "default.css";
+@import "../default.css";
 li p,li h3,li pre { margin:0 }
 li { margin-top:1em }
 #draftlist li, #authlist li { margin:0 }
@@ -15,8 +15,8 @@ code { white-space:nowrap }
 pre code { white-space:pre }
 /*]]>*/
 </style>
-<link rel="contents" href="../xmdp" title="XMDP - XHTML Meta Data Profiles" />
-<link rel="copyright" href="description#copyright" title="Copyright" />
+<link rel="contents" href="../../xmdp" title="XMDP - XHTML Meta Data Profiles" />
+<link rel="copyright" href="#copyright" title="Copyright" />
 </head>
 <body>
 <h1><abbr title="XHTML Meta Data Profiles">XMDP</abbr>: Introduction and Format Description</h1>
@@ -27,7 +27,7 @@ pre code { white-space:pre }
 
 <h2 id="intro">Introduction</h2>
 <p>
-<a href="description#ref-HTML4">HTML4</a> has several mechanisms for describing meta data, the most well known being the <a href="http://w3.org/TR/html401/struct/global.html#edef-META"><code>&lt;meta&gt;</code> element</a>.  <code>&lt;meta&gt;</code> is often used to denote the author of a document:
+<a href="#ref-HTML4">HTML4</a> has several mechanisms for describing meta data, the most well known being the <a href="http://w3.org/TR/html401/struct/global.html#edef-META"><code>&lt;meta&gt;</code> element</a>.  <code>&lt;meta&gt;</code> is often used to denote the author of a document:
 </p>
 <pre><code>
  &lt;meta name="author" lang="tr" content="Tantek &amp;Ccedil;elik" /&gt;
@@ -38,10 +38,10 @@ Each META element specifies a property/value pair. The name attribute identifies
 </p>
 </blockquote>
 <p>
-A half dozen or so example properties which are fairly self explanatory: author, keywords, copyright, date, identifier.   But in the <a href="http://w3.org/TR/html401/struct/global.html#adef-name-META">definition of the 'name' attribute of the <code>&lt;meta&gt;</code> element</a>, the <a href="description#ref-HTML4">HTML4</a> specification takes great care to state that <q cite="http://w3.org/TR/html401/struct/global.html#adef-name-META">This specification does not list legal values for this attribute.</q>
+A half dozen or so example properties which are fairly self explanatory: author, keywords, copyright, date, identifier.   But in the <a href="http://w3.org/TR/html401/struct/global.html#adef-name-META">definition of the 'name' attribute of the <code>&lt;meta&gt;</code> element</a>, the <a href="#ref-HTML4">HTML4</a> specification takes great care to state that <q cite="http://w3.org/TR/html401/struct/global.html#adef-name-META">This specification does not list legal values for this attribute.</q>
 </p>
 <p>
-Instead, <a href="description#ref-HTML4">HTML4</a> provides a mechanism (the 'profile' attribute of the <code>&lt;head&gt;</code> element) to point to a meta data profile that defines properties and values.  And again, the specification states explicitly that it <q cite="http://w3.org/TR/html401/struct/global.html#h-7.4.4.3">does not define formats for profiles</q>.
+Instead, <a href="#ref-HTML4">HTML4</a> provides a mechanism (the 'profile' attribute of the <code>&lt;head&gt;</code> element) to point to a meta data profile that defines properties and values.  And again, the specification states explicitly that it <q cite="http://w3.org/TR/html401/struct/global.html#h-7.4.4.3">does not define formats for profiles</q>.
 </p>
 <p>This proposal seeks to define a meta data profile format using principles of simplicity, reuse, and minimalism.  The constraints, direction and hints for the format are derived from the HTML4 specification, and the building blocks of the format are taken from XHTML 1.0.  Since the format  is a subset of XHTML and therefore a profile itself, the format is called the XHTML Meta Data Profile, abbreviated as <abbr title="XHTML Meta Data Profile">XMDP</abbr>.
 </p>
@@ -197,7 +197,7 @@ with the respective MIME type, i.e. '<code>text/html</code>' for HTML or Compati
  
 <h2 id="sample">Sample Profile Document</h2>
 
-<p>The various meta properties used informatively in HTML4 could be defined by the following profile document (also available online: <a href="samplehtmlprofile.html">samplehtmlprofile.html</a>):</p>
+<p>The various meta properties used informatively in HTML4 could be defined by the following profile document (also available online: <a href="../samplehtmlprofile.html">samplehtmlprofile.html</a>):</p>
 
 <pre><code>
 &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -215,9 +215,9 @@ with the respective MIME type, i.e. '<code>text/html</code>' for HTML or Compati
    &lt;dd&gt;The name (or names) of the copyright holder(s) 
     for this document, and/or a complete statement of copyright.&lt;/dd&gt;
   &lt;dt id='date'&gt;date&lt;/dt&gt;
-   &lt;dd&gt;The last updated date of the document, in <a href="description#ref-ISO8601">ISO8601</a> date format.&lt;/dd&gt;
+   &lt;dd&gt;The last updated date of the document, in <a href="#ref-ISO8601">ISO8601</a> date format.&lt;/dd&gt;
   &lt;dt id='identifier'&gt;identifier&lt;/dt&gt;
-   &lt;dd&gt;The normative <a href="description#ref-URI">URI</a> for the document.&lt;/dd&gt;
+   &lt;dd&gt;The normative <a href="#ref-URI">URI</a> for the document.&lt;/dd&gt;
   &lt;dt id='rel'&gt;rel&lt;/dt&gt;
    &lt;dd&gt;
     &lt;dl&gt;
@@ -243,7 +243,7 @@ e.g. to reference the above samplehtmlprofile.html profile:
 </p>
 <pre><code>&lt;head <strong>profile='http://gmpg.org/xmdp/samplehtmlprofile.html'</strong>&gt;</code></pre>
 
-<p>Similarly, tools can load and cache one or more XMDP profiles by reading the profile attribute, treating it as a space separated set of URIs (the above example demonstrates the simple case of one profile, while the profile attribute may reference several), retrieving the profiles addressed by those URIs, and constructing a dictionary of properties and values by parsing the definition lists &lt;dl&gt;, terms &lt;dt&gt;, and definitions &lt;dd&gt; as specified in the XMDP <a href="description#format">Format Description</a> above.
+<p>Similarly, tools can load and cache one or more XMDP profiles by reading the profile attribute, treating it as a space separated set of URIs (the above example demonstrates the simple case of one profile, while the profile attribute may reference several), retrieving the profiles addressed by those URIs, and constructing a dictionary of properties and values by parsing the definition lists &lt;dl&gt;, terms &lt;dt&gt;, and definitions &lt;dd&gt; as specified in the XMDP <a href="#format">Format Description</a> above.
 </p>
 
 <h2 id="multiple">Using Multiple Profiles</h2>
