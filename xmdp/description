@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="samplehtmlprofile.html"><title>XMDP: Introduction and Format Description</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="author" lang="tr" content="Tantek &Ccedil;elik" />
+<meta name="copyright" content="&copy; copyright 2003 by Tantek &Ccedil;elik. All rights reserved." />
+<meta name="date" content="2003-05-27" />
+<style type="text/css">
+/*<![CDATA[*/
+@import "default.css";
+li p,li h3,li pre { margin:0 }
+li { margin-top:1em }
+#draftlist li, #authlist li { margin:0 }
+code { white-space:nowrap }
+pre code { white-space:pre }
+/*]]>*/
+</style>
+<link rel="contents" href="../xmdp" title="XMDP - XHTML Meta Data Profiles" />
+<link rel="copyright" href="description#copyright" title="Copyright" />
+</head>
+<body>
+<h1><abbr title="XHTML Meta Data Profiles">XMDP</abbr>: Introduction and Format Description</h1>
+<h2>Author(s)</h2>
+<ul id="authlist">
+<li><a href="http://tantek.com/" title="tantek.com" lang="tr">Tantek &Ccedil;elik</a></li>
+</ul>
+
+<h2 id="intro">Introduction</h2>
+<p>
+<a href="description#ref-HTML4">HTML4</a> has several mechanisms for describing meta data, the most well known being the <a href="http://w3.org/TR/html401/struct/global.html#edef-META"><code>&lt;meta&gt;</code> element</a>.  <code>&lt;meta&gt;</code> is often used to denote the author of a document:
+</p>
+<pre><code>
+ &lt;meta name="author" lang="tr" content="Tantek &amp;Ccedil;elik" /&gt;
+</code></pre>
+<p>Briefly explained:</p>
+<blockquote><p>
+Each META element specifies a property/value pair. The name attribute identifies the property and the content attribute specifies the property's value.
+</p>
+</blockquote>
+<p>
+A half dozen or so example properties which are fairly self explanatory: author, keywords, copyright, date, identifier.   But in the <a href="http://w3.org/TR/html401/struct/global.html#adef-name-META">definition of the 'name' attribute of the <code>&lt;meta&gt;</code> element</a>, the <a href="description#ref-HTML4">HTML4</a> specification takes great care to state that <q cite="http://w3.org/TR/html401/struct/global.html#adef-name-META">This specification does not list legal values for this attribute.</q>
+</p>
+<p>
+Instead, <a href="description#ref-HTML4">HTML4</a> provides a mechanism (the 'profile' attribute of the <code>&lt;head&gt;</code> element) to point to a meta data profile that defines properties and values.  And again, the specification states explicitly that it <q cite="http://w3.org/TR/html401/struct/global.html#h-7.4.4.3">does not define formats for profiles</q>.
+</p>
+<p>This proposal seeks to define a meta data profile format using principles of simplicity, reuse, and minimalism.  The constraints, direction and hints for the format are derived from the HTML4 specification, and the building blocks of the format are taken from XHTML 1.0.  Since the format  is a subset of XHTML and therefore a profile itself, the format is called the XHTML Meta Data Profile, abbreviated as <abbr title="XHTML Meta Data Profile">XMDP</abbr>.
+</p>
+
+<h2 id="principles">Principles</h2>
+<ul>
+<li><h3>Simplicity</h3>
+ <p>The format should be simple, both to write and to read.  The format should be easy for humans to author by hand.</p>
+</li>
+<li><h3>Reuse</h3>
+ <p>The format should attempt to reuse elements of already established formats whenever possible, and avoid inventing new terms if at all possible.</p>
+</li>
+<li><h3>Minimalism</h3>
+ <p>The format should be as small as possible, and no smaller.  It should satisfy the constraints, direction, and needs implied by HTML4, and <em>no more</em>.</p>
+</li>
+</ul>
+
+<h2 id="html4hints">Hints from HTML4</h2>
+<p><strong>Strong emphasis</strong> added for clarity.</p>
+<ul>
+<li><h3><a href="http://www.w3.org/TR/html401/types.html#h-6.12">6.12 Link types</a></h3>
+  <blockquote><p>
+Authors may wish to <strong>define additional link types</strong> not described in this specification. If they do so, they should <strong>use a profile to cite the conventions used to define the link types</strong>. Please see the profile attribute of the HEAD element for more details.  
+</p></blockquote>
+</li>
+
+<li><h3><a href="http://www.w3.org/TR/html401/struct/global.html#h-7.4.1">7.4.1 The HEAD element</a></h3><blockquote><p><code>profile     %URI;          #IMPLIED  --  named <strong>dictionary</strong> of meta info --
+</code></p></blockquote>
+</li>
+
+<li><h3><a href="http://www.w3.org/TR/html401/struct/global.html#adef-profile">7.4.1 profile = uri [CT]</a></h3>
+<blockquote><p>
+This attribute specifies the <strong>location of one or more meta data profiles, separated by white space</strong>. For future extensions, user agents should consider the value to be a list even though this specification only considers the first URI to be significant. Profiles are discussed below in the section on meta data.
+</p></blockquote>
+</li>
+
+<li><h3><a href="http://www.w3.org/TR/html401/struct/global.html#h-7.4.4">7.4.4 Meta data</a></h3>
+<blockquote><p>
+This specification does not define a set of legal meta data properties. The <strong>meaning of a property</strong> and the <strong>set of legal values for that property</strong> should be <strong>defined in a reference lexicon called a profile</strong>. For example, a profile designed to help search engines index documents might define properties such as "author", "copyright", "keywords", etc.
+</p></blockquote>
+</li>
+
+<li><h3><a href="http://www.w3.org/TR/html401/struct/global.html#h-7.4.4.1">Specifying meta data</a></h3>
+<blockquote><p>
+Referring to a <strong>profile where the property and its legal values are defined</strong>.
+</p></blockquote>
+</li>
+
+<li><h3><a href="http://www.w3.org/TR/html401/struct/global.html#h-7.4.4.3">Meta data profiles</a></h3>
+<blockquote><p>
+User agents may <strong>dereference the URI</strong> and perform some activity based on the actual <strong>definitions within the profile</strong> (e.g., authorize the usage of the profile within the current HTML document). This specification does not define formats for profiles.
+</p></blockquote>
+
+</li>
+</ul>
+
+
+<h2 id="deductions">Deductions</h2>
+<ul>
+<li>The format should be a <strong>dictionary</strong>.  The <em>closest</em> thing to a dictionary in HTML4 is a <em>definition list</em> <code>&lt;dl&gt;</code>.
+</li>
+<li>The format may define multiple <strong>properties</strong> (such as "author", "copyright", etc.).  Each property definition should also list the <strong>set of legal values for that property</strong> where they <strong>should be defined</strong>.  Such an embedded list of values and respective definitions implies a nested <em>definition list</em> <code>&lt;dl&gt;</code> of values for each property.</li>
+<li>The format contains a <em>reference lexicon <strong>called a profile</strong></em>.  The <em>lexicon</em> presumably refers to the dictionary, which, as discussed above, is the topmost <em>definition list</em> <code>&lt;dl&gt;</code>.  A reasonable way to "call" that lexicon a "profile" is to annotate the respective <code>&lt;dl&gt;</code> with a '<code>class</code>' attribute with the value "profile".
+</li>
+<li>The format should contain the <strong>actual definitions</strong> of the properties.  Thus while the first level of definition terms <code>&lt;dt&gt;</code> would contain the property names, their respective definitions <code>&lt;dd&gt;</code> should contain a description of the property as well as the aforementioned nested definition list of their valid values.  The nested definition list's definition terms <code>&lt;dt&gt;</code> should then contain the value names, and their respective definitions <code>&lt;dd&gt;</code> should contain their respective descriptions.
+</li>
+<li>In order to define new <em>link type</em> values as described in 6.12, we must choose a property name for the new values.  Two obvious options are the 'rel' and 'rev' attributes, which are effectively properties that accept <em>link type</em> values.  'rel' is both more frequently used, and better understood, than 'rev'.  Thus to define new <em>link types</em>, a profile lexicon should explicitly define 'rel' and include a definition list of the additional set of link type values.
+</li>
+</ul>
+
+
+<h2 id="format">Format Description</h2>
+
+<p>The XHTML profile format consists of a definition list of properties as definition terms, and as their definitions, an optional brief description, and then, if applicable, one or more definition list(s) of values.</p>
+
+<p>First the profile definition list, recognizable by its class:</p>
+
+<pre><code>
+&lt;dl class="profile"&gt;
+</code></pre>
+
+<p>Note that the <a href="http://www.w3.org/TR/html401/struct/global.html#adef-class">HTML4 'class' attribute</a> is a space separated set of values. All that is required is for the value "profile" to be in that set.</p>
+
+<p>Next a definition term and definition for a property:</p>
+
+<pre><code>
+ &lt;dt id='property1'&gt;property1&lt;/dt&gt; 
+ &lt;dd&gt;
+</code></pre>
+
+<p>The property name is given an 'id' attribute so pages can reference the property in particular 
+with a URL with the appropriate fragment identifier.  The 'id' attribute need not be the same 
+as the name of the property, but probably should be for the sake of simplicity.</p>
+
+<p>Any amount of valid optional markup (except for definition lists of course) may be used to provide a prose description and/or references for the property.</p>
+
+<pre><code>
+  &lt;p&gt;Authors may use property1 to describe 
+   some particular details.
+  &lt;/p&gt;
+</code></pre>
+
+<p>One or more nested definition list(s) for the values and their definitions.
+If the values do not form a discrete set, or if that set should be too large to practically enumerate, a simple prose description of the set of legal values and any type constraints will suffice.</p>
+
+<pre><code>
+  &lt;dl&gt;
+   &lt;dt id='value1'&gt;value1&lt;/dt&gt;
+    &lt;dd&gt;definition of value1&lt;/dd&gt;
+   &lt;dt id='value2'&gt;value2&lt;/dt&gt;
+    &lt;dd&gt;definition of value2&lt;/dd&gt;
+   ...
+  &lt;/dl&gt;
+  ...
+ &lt;/dd&gt;
+</code></pre>
+
+<p>Again 'id' attributes are used so pages can reference a specific value using a URL to the profile with the fragment identifier for the value.  And again the 'id' attribute need not be the same as the name of the value.</p>
+
+<p>Perhaps another property:</p>
+
+<pre><code>
+ &lt;dt id='property2'&gt;property2&lt;/dt&gt;
+</code></pre>
+
+<p>And its values description instead:</p>
+
+<pre><code>
+ &lt;dd&gt;
+  Property2 contains a space separated set of values, 
+  each of which is a date in the ISO8601 date format.
+ &lt;/dd&gt;
+</code></pre>
+
+<p>Etc., and finally closure of the outer definition list:</p>
+
+<pre><code>
+ ...
+&lt;/dl&gt;
+</code></pre>
+
+<h2 id="documents">Format Embedding and Profile Documents</h2>
+
+<p>The format may be embedded anywhere an HTML4 definition list may be embedded. 
+Being well formed XML, the profile format may also be embedded in any XML document that permits embedding of XHTML.</p>
+
+<p>A self-standing profile document can be simply constructed by wrapping the profile format with the minimal XHTML necessary for a valid XHTML document.
+</p>
+
+<p>XMDP profile documents are typically HTML or XHTML documents (or both), and should be sent 
+with the respective MIME type, i.e. '<code>text/html</code>' for HTML or Compatible XHTML 1.0, or '<code>application/xhtml+xml</code>' for XHTML.</p>
+
+ 
+<h2 id="sample">Sample Profile Document</h2>
+
+<p>The various meta properties used informatively in HTML4 could be defined by the following profile document (also available online: <a href="samplehtmlprofile.html">samplehtmlprofile.html</a>):</p>
+
+<pre><code>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"&gt;
+&lt;head&gt;&lt;title&gt;sample HTML profile&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+ &lt;dl class="profile"&gt;
+  &lt;dt id='author'&gt;author&lt;/dt&gt;
+   &lt;dd&gt;A person who wrote (at least part of) the document.&lt;/dd&gt;
+  &lt;dt id='keywords'&gt;keywords&lt;/dt&gt;
+   &lt;dd&gt;A comma and/or space separated list of the 
+    keywords or keyphrases of the document.&lt;/dd&gt;
+  &lt;dt id='copyright'&gt;copyright&lt;/dt&gt;
+   &lt;dd&gt;The name (or names) of the copyright holder(s) 
+    for this document, and/or a complete statement of copyright.&lt;/dd&gt;
+  &lt;dt id='date'&gt;date&lt;/dt&gt;
+   &lt;dd&gt;The last updated date of the document, in <a href="description#ref-ISO8601">ISO8601</a> date format.&lt;/dd&gt;
+  &lt;dt id='identifier'&gt;identifier&lt;/dt&gt;
+   &lt;dd&gt;The normative <a href="description#ref-URI">URI</a> for the document.&lt;/dd&gt;
+  &lt;dt id='rel'&gt;rel&lt;/dt&gt;
+   &lt;dd&gt;
+    &lt;dl&gt;
+     &lt;dt id='script'&gt;script&lt;/dt&gt;
+     &lt;dd&gt;A reference to a client-side script. When used with the 
+      LINK element, the script is evaluated as the document loads and 
+      may modify the contents of the document dynamically.&lt;/dd&gt; 
+    &lt;/dl&gt;
+   &lt;/dd&gt;
+  &lt;/dl&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre>
+
+<h2 id="using">Using a Profile</h2>
+
+<p>For document authors, <a href="http://www.w3.org/TR/html401/struct/global.html#adef-profile">HTML4.01 describes the 'profile' attribute</a> for referring to profiles. In short, to refer to a profile from any (X)HTML document, simply add a 'profile' attribute to the document's head element,
+</p>
+<pre><code>&lt;head&gt;</code></pre>
+<p>
+e.g. to reference the above samplehtmlprofile.html profile:
+</p>
+<pre><code>&lt;head <strong>profile='http://gmpg.org/xmdp/samplehtmlprofile.html'</strong>&gt;</code></pre>
+
+<p>Similarly, tools can load and cache one or more XMDP profiles by reading the profile attribute, treating it as a space separated set of URIs (the above example demonstrates the simple case of one profile, while the profile attribute may reference several), retrieving the profiles addressed by those URIs, and constructing a dictionary of properties and values by parsing the definition lists &lt;dl&gt;, terms &lt;dt&gt;, and definitions &lt;dd&gt; as specified in the XMDP <a href="description#format">Format Description</a> above.
+</p>
+
+<h2 id="multiple">Using Multiple Profiles</h2>
+
+<h3>Space separated</h3>
+
+<p><a href="http://www.w3.org/TR/html401/struct/global.html#adef-profile">HTML4.01 states</a> that <q>one or more meta data profiles, [are] separated by white space</q>.  The term "white space" is used interchangably for "white space characters" in HTML4.01.  <a href="http://www.w3.org/TR/html401/struct/text.html#h-9.1">HTML4.01 defines white space</a> in terms of a set of characters.  Note that HTML4.01 contains a few other space separated attributes, such as the <a href="http://www.w3.org/TR/html401/struct/global.html#adef-class">'class' attribute</a>, and the <a href="http://www.w3.org/TR/html401/struct/links.html#adef-rel">'rel' attribute</a>, and thus, the treatment of space-separated values is fairly well understood.  To keep it simple, authors should use a single space character to delimit more than one profile URI in the 'profile' attribute, e.g.:
+</p>
+<pre><code>&lt;head <strong>profile='http://example.org/p1 http://example.org/p2'</strong>&gt;</code></pre>
+
+<p>
+Tools, however, should expect any amount/sequence of <em>white space</em> between URIs, where such white space consists of one or more occurances of the <a href="http://www.w3.org/TR/html401/struct/text.html#h-9.1">white space characters as defined in HTML4.01</a>.
+</p>
+
+<h3>Relative significance of profiles</h3>
+
+<p><a href="http://www.w3.org/TR/html401/struct/global.html#adef-profile">HTML 4.01 says that</a> <q cite="http://www.w3.org/TR/html401/struct/global.html#adef-profile">this specification only considers the first URI to be significant</q>.  Obviously to reference and use multiple profiles, this portion of the spec must be extended just slightly to allow all URIs in the 'profile' attribute to have some meaning.
+</p>
+
+<p>However, clearly HTML4.01 shows a bias towards the first URI rather than later URIs.  Thus, consistent with that bias, the URIs in the 'profile' attribute are to be treated most significant (first) to least significant (last).  Such relative significance only makes a difference when profiles attempt to define the same property(s) and/or value(s).  Thus if two or more profiles define the same term, the earliest (first) of those profiles wins, and its definition for that term is used.
+</p>
+
+
+
+<h2 id="references">References</h2>
+<dl><dt id="ref-HTML4">HTML4</dt>
+    <dd>Raggett, D.; Le Hors, A.; Jacobs, I.. <cite>HTML 4.01
+Specification.</cite> Dec 1999. W3C Recommendation. URL: <a
+href="http://www.w3.org/TR/1999/REC-html401-19991224">http://www.w3.org/TR/1999/REC-html401-19991224</a>
+    </dd>
+    <dt id="ref-ISO8601">ISO8601</dt>
+	<dd>"Data elements and interchange formats -- Information interchange --
+Representation of dates and times", ISO 8601:1988.</dd>
+	<dt id="ref-URI">URI</dt>
+	<dd><a href="http://www.ietf.org/rfc/rfc2396.txt">"Uniform Resource Identifiers (URI): Generic Syntax"</a>, T. Berners-Lee, R. Fielding, L. Masinter, August 1998.</dd>
+</dl>
+
+<div id="footer"><p id="copyright">
+Copyright &copy; 2003 GMPG.  <a rel="license" href="http://creativecommons.org/licenses/by-nd/1.0/">Some rights reserved</a>.</p>
+</div>
+</body>
+</html>
